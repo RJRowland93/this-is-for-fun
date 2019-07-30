@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Index = props => {
-  const { users } = props;
+  const { users, time } = props;
   return (
     <div
       style={{
@@ -12,21 +12,36 @@ const Index = props => {
         flexDirection: "column"
       }}
     >
-      <p>Real dank tomfooler coming soon...</p>
-      <p>{`Coming to you from ${users.map(({ name }) => name)}`}</p>
+      <p>Real dank tomfoolery coming soon...</p>
+      <p>{`Brought to you by: ${users.map(({ name }) => name)}`}</p>
+      <p>{`You opened this page at: ${time.time}`}</p>
     </div>
   );
 };
 
-Index.getInitialProps = async ({ req }) => {
-  const {
-    data: {
-      data: { users }
-    }
-  } = await axios.post("http://localhost:3000/api/graphql", {
-    query: `{ users { name } }`
-  });
-  return { users };
+Index.getInitialProps = async () => {
+  try {
+    const {
+      data: {
+        data: { users, time }
+      }
+    } = await axios.post("http://localhost:3000/api/graphql", {
+      query: `
+      {
+        users {
+          name
+        }
+        time {
+          time
+        }
+      }
+      `
+    });
+
+    return { users, time };
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default Index;

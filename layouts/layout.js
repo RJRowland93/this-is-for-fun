@@ -14,7 +14,16 @@ function Layout({ children, title = "This is for Fun!" }) {
       </Head>
       <Header />
       <Navigation />
-      {children}
+      <div className="center">{children}</div>
+      <style jsx>{`
+        .center {
+          height: 600px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+      `}</style>
     </>
   );
 }

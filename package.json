@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "preprod:start": "next build",
-    "prod:start": "NODE_ENV=production pm2 start server.js --name \"this-is-for-fun\" -i max",
+    "prod:start": "NODE_ENV=production pm2 start start.sh --name \"this-is-for-fun\" -i max",
     "prod:stop": "pm2 delete this-is-for-fun",
     "prod:restart": "pm2 restart this-is-for-fun",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -16,9 +16,7 @@ const Index = props => {
 Index.getInitialProps = async () => {
   try {
     const {
-      data: {
-        data: { users, time }
-      }
+      data: { data: result }
     } = await axios.post("http://localhost:3000/api/graphql", {
       query: `
       {
@@ -32,7 +30,8 @@ Index.getInitialProps = async () => {
       `
     });
 
-    return { users, time };
+    console.log(result);
+    return result;
   } catch (err) {
     console.log(err);
   }

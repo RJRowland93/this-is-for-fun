@@ -17,7 +17,7 @@ Index.getInitialProps = async () => {
   try {
     const {
       data: { data: result }
-    } = await axios.post("http://localhost:3000/api/graphql", {
+    } = await axios.post("https://thisisfor.fun/api/graphql", {
       query: `
       {
         users {
@@ -33,7 +33,7 @@ Index.getInitialProps = async () => {
     console.log(result);
     return result;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
